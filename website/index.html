@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="PAYLAK — a design preview for everyday money in Lebanon. Cash, transfers and cards, thoughtfully connected."
+    />
+    <title>PAYLAK — Money, on your terms.</title>
+    <style>
+      :root {
+        --ink: #101c31;
+        --blue: #315ddb;
+        --muted: #5c6c83;
+        --paper: #f2f5f9;
+        --line: #dce3ed;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Arial, "Noto Sans Arabic", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      a:focus-visible,
+      button:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #315ddb;
+        outline-offset: 5px;
+      }
+      .wrap {
+        max-width: 1240px;
+        margin: auto;
+        padding: 0 48px;
+      }
+      .preview {
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        background: #e4ebfa;
+        padding: 10px 24px;
+        text-align: center;
+      }
+      .nav {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        border-bottom: 1px solid var(--line);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 23px;
+        font-weight: 700;
+        letter-spacing: 4px;
+      }
+      .brand svg {
+        width: 32px;
+        height: 32px;
+      }
+      .navlinks {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        margin-inline-start: auto;
+        font-size: 13px;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+        border-radius: 9px;
+        padding: 14px 22px;
+        background: var(--blue);
+        color: white;
+        border: 1px solid var(--blue);
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .button.secondary {
+        background: transparent;
+        color: var(--ink);
+        border-color: #a9b7cb;
+      }
+      .lang {
+        background: transparent;
+        border: 0;
+        min-height: 44px;
+        min-width: 44px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 60px;
+        padding: 88px 0 80px;
+        align-items: center;
+      }
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--blue);
+        font-weight: 600;
+      }
+      .hero h1 {
+        font-size: clamp(48px, 5.4vw, 76px);
+        font-weight: 500;
+        letter-spacing: -4px;
+        line-height: 1.06;
+        margin: 24px 0;
+      }
+      .hero p {
+        font-size: 18px;
+        line-height: 1.7;
+        color: var(--muted);
+        max-width: 420px;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+      .hero small {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 18px;
+      }
+      .product {
+        position: relative;
+        min-height: 510px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .phone {
+        width: 260px;
+        background: #0b1424;
+        border: 7px solid #233049;
+        border-radius: 38px;
+        padding: 23px 19px;
+        color: #f5f7fc;
+        box-shadow: 0 24px 45px #101c311e;
+        transform: rotate(-3deg);
+      }
+      .phone-head {
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        margin-bottom: 22px;
+      }
+      .phone .greet {
+        font-size: 14px;
+        color: #a5b6ce;
+      }
+      .phone .amount {
+        font-size: 31px;
+        letter-spacing: -1px;
+        margin: 10px 0 7px;
+      }
+      .phone .micro {
+        font-size: 10px;
+        color: #a5b6ce;
+      }
+      .phone .shortcuts {
+        display: flex;
+        justify-content: space-between;
+        margin: 25px 0 20px;
+        font-size: 10px;
+      }
+      .shortcut {
+        text-align: center;
+      }
+      .shortcut b {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: #1b2d49;
+        border-radius: 13px;
+        margin-bottom: 7px;
+        font-size: 22px;
+        font-weight: 400;
+      }
+      .shortcut:first-child b {
+        background: #315ddb;
+      }
+      .balance {
+        border: 1px solid #293b55;
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 20px;
+        font-size: 11px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .entry {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        padding: 14px 0;
+        border-bottom: 1px solid #293b55;
+      }
+      .entry span:last-child {
+        color: #a7d8c3;
+      }
+      .phone-nav {
+        display: flex;
+        justify-content: space-between;
+        font-size: 9px;
+        margin-top: 26px;
+        color: #a5b6ce;
+      }
+      .phone-nav span:first-child {
+        color: #88aaff;
+      }
+      .physical {
+        position: absolute;
+        right: -10px;
+        bottom: 55px;
+        width: 280px;
+        height: 173px;
+        border-radius: 15px;
+        padding: 23px;
+        color: white;
+        background: #142239;
+        box-shadow: 0 14px 25px #101c3130;
+        transform: rotate(8deg);
+        overflow: hidden;
+      }
+      .physical:before {
+        content: "";
+        position: absolute;
+        width: 210px;
+        height: 250px;
+        right: -90px;
+        top: -40px;
+        border: 1px solid #43536c;
+        border-radius: 45px;
+        box-shadow:
+          0 0 0 10px #142239,
+          0 0 0 11px #43536c,
+          0 0 0 23px #142239,
+          0 0 0 24px #43536c,
+          0 0 0 37px #142239,
+          0 0 0 38px #43536c;
+        transform: rotate(-25deg);
+      }
+      .physical strong {
+        position: relative;
+        letter-spacing: 4px;
+        font-size: 16px;
+      }
+      .chip {
+        width: 31px;
+        height: 25px;
+        background: #bbc5d2;
+        border-radius: 5px;
+        margin: 23px 0 20px;
+      }
+      .physical footer {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+      .featurebar {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 30px 0;
+      }
+      .featurebar div {
+        padding-inline: 28px;
+        border-inline-end: 1px solid var(--line);
+      }
+      .featurebar div:first-child {
+        padding-inline-start: 0;
+      }
+      .featurebar div:last-child {
+        border: 0;
+      }
+      .featurebar b {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .featurebar p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .section {
+        padding: 90px 0;
+      }
+      .sectionhead {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: end;
+        margin-bottom: 40px;
+      }
+      h2 {
+        font-size: 44px;
+        letter-spacing: -1.7px;
+        font-weight: 500;
+        line-height: 1.12;
+        margin: 14px 0;
+      }
+      .sectionhead p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+      .cashblock {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 20px;
+        background: #101c31;
+        color: white;
+        overflow: hidden;
+      }
+      .cashcopy {
+        padding: 44px;
+      }
+      .cashcopy p {
+        font-size: 15px;
+        color: #bbc5d2;
+        line-height: 1.7;
+      }
+      .steps {
+        display: flex;
+        gap: 18px;
+        margin-top: 28px;
+        align-items: center;
+        font-size: 12px;
+      }
+      .steps b {
+        color: #88aaff;
+        font-size: 20px;
+      }
+      .cashpanel {
+        margin: 30px;
+        background: #1b2d49;
+        border: 1px solid #334969;
+        border-radius: 15px;
+        padding: 28px;
+      }
+      .cashpanel header {
+        display: flex;
+        justify-content: space-between;
+        color: #bbc5d2;
+        font-size: 12px;
+      }
+      .cashpanel h3 {
+        font-size: 40px;
+        font-weight: 500;
+        letter-spacing: -1px;
+        margin: 28px 0 6px;
+      }
+      .cashpanel .line {
+        display: flex;
+        justify-content: space-between;
+        padding: 17px 0;
+        font-size: 12px;
+        border-bottom: 1px solid #344663;
+      }
+      .cashpanel small {
+        display: block;
+        margin-top: 20px;
+        color: #a5b6ce;
+        font-size: 10px;
+        line-height: 1.5;
+      }
+      .grid3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+      .tile {
+        border-top: 2px solid var(--ink);
+        padding-top: 22px;
+      }
+      .tile .num {
+        font-size: 12px;
+        color: var(--blue);
+        letter-spacing: 0.1em;
+      }
+      .tile h3 {
+        font-size: 25px;
+        font-weight: 500;
+        letter-spacing: -0.6px;
+      }
+      .tile p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .business {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 65px;
+        background: white;
+        padding: 50px;
+        border-radius: 20px;
+      }
+      .business p {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .business ul {
+        padding: 0;
+        list-style: none;
+      }
+      .business li {
+        padding: 20px 0;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+      }
+      .faq {
+        max-width: 850px;
+        margin: 0 auto;
+      }
+      details {
+        border-bottom: 1px solid var(--line);
+        padding: 20px 0;
+      }
+      summary {
+        font-size: 17px;
+        cursor: pointer;
+        min-height: 30px;
+      }
+      details p {
+        line-height: 1.8;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid var(--line);
+        padding: 32px 0;
+        gap: 30px;
+      }
+      .footer small {
+        max-width: 430px;
+        line-height: 1.6;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      html[dir="rtl"] h1,
+      html[dir="rtl"] h2 {
+        letter-spacing: 0;
+        line-height: 1.4;
+      }
+      html[dir="rtl"] .brand {
+        direction: ltr;
+      }
+      html[dir="rtl"] .product {
+        direction: ltr;
+      }
+      @media (max-width: 900px) {
+        .wrap {
+          padding: 0 24px;
+        }
+        .hero {
+          gap: 20px;
+        }
+        .hero h1 {
+          font-size: 56px;
+        }
+        .physical {
+          right: -15px;
+          width: 240px;
+        }
+        .navlinks a:not(.button) {
+          display: none;
+        }
+        .sectionhead {
+          gap: 24px;
+        }
+        .cashcopy {
+          padding: 30px;
+        }
+        .cashpanel {
+          margin: 20px;
+        }
+        .business {
+          padding: 30px;
+          gap: 30px;
+        }
+      }
+      @media (max-width: 640px) {
+        .nav {
+          height: 82px;
+        }
+        .navlinks {
+          gap: 6px;
+        }
+        .nav .button {
+          padding: 10px;
+          font-size: 11px;
+        }
+        .brand {
+          font-size: 18px;
+          letter-spacing: 2px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 48px 0;
+        }
+        .hero h1 {
+          font-size: 60px;
+          letter-spacing: -3px;
+        }
+        .product {
+          margin-top: 10px;
+          min-height: 480px;
+        }
+        .physical {
+          right: 0;
+          bottom: 15px;
+        }
+        .featurebar {
+          grid-template-columns: 1fr;
+          padding: 12px 0;
+        }
+        .featurebar div {
+          padding: 14px 0;
+          border: 0;
+        }
+        .section {
+          padding: 55px 0;
+        }
+        .sectionhead,
+        .cashblock,
+        .business {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        h2 {
+          font-size: 36px;
+        }
+        .grid3 {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .footer {
+          flex-direction: column;
+        }
+        .cashpanel {
+          margin-top: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preview" data-ar="معاينة تصميم · الخدمات غير متاحة بعد">
+      DESIGN PREVIEW · SERVICES ARE NOT YET LIVE
+    </div>
+    <div class="wrap">
+      <nav class="nav">
+        <a class="brand" href="#" aria-label="PAYLAK home"
+          ><svg viewBox="0 0 64 64" aria-hidden="true">
+            <path
+              fill="#315DDB"
+              d="M10 8h30c10 0 16 7 16 17s-6 17-16 17H25V30h14c3 0 5-2 5-5s-2-5-5-5H22v36H10zM29 46h12v10H29z"
+            /></svg
+          >PAYLAK</a
+        >
+        <div class="navlinks">
+          <a href="#personal" data-ar="للأفراد">Personal</a
+          ><a href="#cash" data-ar="النقد">Cash</a
+          ><a href="#business" data-ar="للأعمال">Business</a
+          ><button class="lang" id="language" aria-label="Switch language">
+            عربي</button
+          ><a class="button" href="../" data-ar="استكشف العرض"
+            >Explore demo ↗</a
+          >
+        </div>
+      </nav>
+      <main>
+        <section class="hero">
+          <div>
+            <div class="eyebrow" data-ar="من لبنان. لحياتك اليومية.">
+              FROM LEBANON. FOR EVERYDAY LIFE.
+            </div>
+            <h1 data-ar="أموالك.<br>على طريقتك.">
+              Your money.<br />On your terms.
+            </h1>
+            <p
+              data-ar="استلم المال. ادفع ببطاقتك. وتأكد من توفر النقد قبل ما تروح."
+            >
+              Receive money. Spend by card. Know your cash is ready before you
+              go.
+            </p>
+            <div class="actions">
+              <a class="button" href="../" data-ar="جرّب التطبيق"
+                >Try the app ↗</a
+              ><a class="button secondary" href="#cash" data-ar="اكتشف التجربة"
+                >See how it works</a
+              >
+            </div>
+            <small data-ar="عرض تفاعلي ببيانات تجريبية. بدون أموال حقيقية."
+              >Interactive preview with sample data. No real money.</small
+            >
+          </div>
+          <div class="product" aria-label="PAYLAK sample app and card">
+            <div class="phone">
+              <div class="phone-head"><span>9:41</span><span>● ▰</span></div>
+              <div class="greet">Good afternoon, Rayan</div>
+              <div class="micro" style="margin-top: 20px">
+                Available USD wallet
+              </div>
+              <div class="amount">$2,450.00</div>
+              <div class="micro">LBP 8,950,000</div>
+              <div class="shortcuts">
+                <div class="shortcut"><b>↗</b>Send</div>
+                <div class="shortcut"><b>+</b>Add</div>
+                <div class="shortcut"><b>⌖</b>Cash</div>
+              </div>
+              <div class="balance">
+                <span>Card balance</span><strong>$1,080.00</strong>
+              </div>
+              <div class="micro">RECENT ACTIVITY</div>
+              <div class="entry">
+                <span>Sara Haddad</span><span>+$150.00</span>
+              </div>
+              <div class="entry">
+                <span>Market</span><span style="color: white">−$28.50</span>
+              </div>
+              <div class="entry">
+                <span>Mobile top-up</span
+                ><span style="color: white">−$10.00</span>
+              </div>
+              <div class="phone-nav">
+                <span>Home</span><span>Payments</span><span>Cards</span
+                ><span>Cash</span>
+              </div>
+            </div>
+            <div class="physical">
+              <strong>PAYLAK</strong>
+              <div class="chip"></div>
+              <footer><span>RAYAN ELANNAN</span><span>•••• 2048</span></footer>
+            </div>
+          </div>
+        </section>
+        <div class="featurebar">
+          <div>
+            <b data-ar="أموالك، بوضوح">See what’s available</b>
+            <p data-ar="رصيد المحفظة والبطاقة، واضحان ومنفصلان.">
+              Wallet and card funds. Clearly separated.
+            </p>
+          </div>
+          <div>
+            <b data-ar="اعرف السعر أولاً">Know the full price</b>
+            <p data-ar="المبلغ والرسوم والصافي قبل التأكيد.">
+              Amount, fees and net value before confirming.
+            </p>
+          </div>
+          <div>
+            <b data-ar="بالعربي وبالإنكليزي">Feel at home</b>
+            <p data-ar="تجربة مصممة بعناية باللغتين.">
+              Thoughtfully designed in English and Arabic.
+            </p>
+          </div>
+        </div>
+        <section class="section" id="cash">
+          <div class="sectionhead">
+            <div>
+              <div class="eyebrow" data-ar="النقد جزء من الحياة">
+                CASH IS PART OF LIFE
+              </div>
+              <h2 data-ar="تأكّد.<br>وبعدين روح.">Know first.<br />Then go.</h2>
+            </div>
+            <p
+              data-ar="نصمّم تجربة حجز النقد حول سؤال بسيط: هل يمكنني استلام المبلغ المطلوب من هذا الموقع؟"
+            >
+              We’re designing cash reservations around a simple question: can I
+              collect the amount I need at this location?
+            </p>
+          </div>
+          <div class="cashblock">
+            <div class="cashcopy">
+              <h2 data-ar="المبلغ.<br>الموقع.<br>موعد الاستلام.">
+                The amount.<br />The place.<br />The window.
+              </h2>
+              <p
+                data-ar="اختر المبلغ، راجع السعر وانتظر تأكيد الوكيل. خريطة المواقع وحدها لا تكفي."
+              >
+                Choose an amount, review the full quote and wait for agent
+                confirmation. A map pin alone is not enough.
+              </p>
+              <div class="steps">
+                <b>01</b><span data-ar="اطلب">Request</span><b>02</b
+                ><span data-ar="تأكّد">Confirm</span><b>03</b
+                ><span data-ar="استلم">Collect</span>
+              </div>
+            </div>
+            <div class="cashpanel">
+              <header>
+                <span data-ar="مثال على طلب نقد">SAMPLE CASH REQUEST</span
+                ><span>↗</span>
+              </header>
+              <h3>$300.00</h3>
+              <p
+                style="color: #bbc5d2; font-size: 12px"
+                data-ar="المبلغ الذي تريد استلامه"
+              >
+                The cash you want to collect
+              </p>
+              <div class="line">
+                <span data-ar="المنطقة">Area</span
+                ><span data-ar="الحازمية">Hazmieh</span>
+              </div>
+              <div class="line">
+                <span data-ar="تأكيد الوكيل">Agent confirmation</span
+                ><span data-ar="مطلوب">Required</span>
+              </div>
+              <div class="line">
+                <span data-ar="موعد الاستلام">Collection window</span
+                ><span data-ar="بعد القبول">After acceptance</span>
+              </div>
+              <small data-ar="سيناريو توضيحي. لم تُنشأ شبكة وكلاء تشغيلية بعد."
+                >Illustrative scenario. An operating agent network is not
+                established yet.</small
+              >
+            </div>
+          </div>
+        </section>
+        <section class="section" id="personal">
+          <div class="sectionhead">
+            <div>
+              <div class="eyebrow" data-ar="ليومك ولسفرك">EVERYDAY & AWAY</div>
+              <h2 data-ar="أشياء تحتاجها.<br>بدون تعقيد.">
+                Useful things.<br />Less friction.
+              </h2>
+            </div>
+            <p
+              data-ar="واجهة واحدة للتحويلات والتحكم بالبطاقة والخدمات اليومية التي تستخدمها فعلاً."
+            >
+              One considered interface for transfers, card controls and the
+              everyday services you actually use.
+            </p>
+          </div>
+          <div class="grid3">
+            <article class="tile">
+              <span class="num">01 / TRANSFERS</span>
+              <h3 data-ar="لناسك، قريب وبعيد.">For your people.</h3>
+              <p
+                data-ar="أرسل أو اطلب المال. راجع اسم المستلم واعرف حالة العملية واحتفظ بإيصال واضح."
+              >
+                Send or request money. Check the recipient, follow the status
+                and keep a clear receipt.
+              </p>
+            </article>
+            <article class="tile">
+              <span class="num">02 / CARDS</span>
+              <h3 data-ar="التحكم بإيدك.">Control stays with you.</h3>
+              <p
+                data-ar="موّل البطاقة، جمّدها، وحدد سقف الإنفاق. اعرف الفرق بين أموال البطاقة والمحفظة."
+              >
+                Fund your card, freeze it and set a spending limit. Always know
+                where your money sits.
+              </p>
+            </article>
+            <article class="tile">
+              <span class="num">03 / SERVICES</span>
+              <h3 data-ar="ليومك، ولرحلتك.">At home. And away.</h3>
+              <p
+                data-ar="شحن الهاتف وeSIM والخدمات الرقمية، مع التحقق من التوافق والسعر قبل الشراء."
+              >
+                Mobile top-ups, travel eSIMs and digital services, with
+                compatibility and price checked before purchase.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section class="business" id="business">
+          <div>
+            <div class="eyebrow" data-ar="بايلاك للأعمال">PAYLAK BUSINESS</div>
+            <h2 data-ar="الاستلام<br>هو البداية.">
+              Getting paid<br />is the beginning.
+            </h2>
+            <p
+              data-ar="نصمّم أدوات تتيح للتاجر اختيار خطوته التالية: الدفع للمورّدين أو الموظفين أو طلب تسوية نقدية."
+            >
+              We’re designing tools that let merchants choose what comes next:
+              pay suppliers, pay staff or request cash settlement.
+            </p>
+            <a
+              class="button secondary"
+              href="../screen/business"
+              data-ar="معاينة تجربة الأعمال"
+              >Preview business tools ↗</a
+            >
+          </div>
+          <ul>
+            <li>
+              <span data-ar="روابط دفع وفواتير">Payment links & invoices</span
+              ><span>01</span>
+            </li>
+            <li>
+              <span data-ar="تسويات واضحة">Clear settlement choices</span
+              ><span>02</span>
+            </li>
+            <li>
+              <span data-ar="رواتب وموافقات">Payroll & approvals</span
+              ><span>03</span>
+            </li>
+            <li>
+              <span data-ar="صلاحيات ومطابقة">Staff roles & reconciliation</span
+              ><span>04</span>
+            </li>
+          </ul>
+        </section>
+        <section class="section faq">
+          <div class="eyebrow" data-ar="بكل وضوح">A FEW CLEAR ANSWERS</div>
+          <h2 data-ar="قبل أن تبدأ.">Before you begin.</h2>
+          <details>
+            <summary data-ar="هل يمكنني فتح حساب فعلي؟">
+              Can I open a real account?
+            </summary>
+            <p
+              data-ar="ليس بعد. هذه معاينة للتصميم والمنتج. لا تقبل أموالاً أو وثائق هوية ولا تُصدر بطاقات فعلية."
+            >
+              Not yet. This is a design and product preview. It does not accept
+              money or identity documents, or issue real cards.
+            </p>
+          </details>
+          <details>
+            <summary data-ar="هل خدمة USDT متاحة؟">Is USDT available?</summary>
+            <p
+              data-ar="الخدمة مخططة لكنها غير مفعّلة. يلزم تأكيد الإطار التشغيلي والأهلية والشركاء والشبكات المدعومة قبل الإطلاق."
+            >
+              It is planned but disabled. The operating arrangement,
+              eligibility, partners and supported networks must be confirmed
+              before launch.
+            </p>
+          </details>
+          <details>
+            <summary data-ar="هل الأسعار والمواقع نهائية؟">
+              Are prices and locations final?
+            </summary>
+            <p
+              data-ar="لا. المبالغ والمواقع في العرض توضيحية. ستظهر الرسوم والتوفر الفعليان قبل تأكيد كل عملية عند الإطلاق."
+            >
+              No. Amounts and locations in the demo are illustrative. Actual
+              fees and availability must be shown before each transaction is
+              confirmed at launch.
+            </p>
+          </details>
+        </section>
+      </main>
+      <footer class="footer">
+        <a class="brand" href="#">PAYLAK</a
+        ><small
+          data-ar="بايلاك · تطوير التصميم 2026. الاسم والخدمات خاضعة للمراجعة. لا يتم تنفيذ عمليات مالية من هذا الموقع."
+          >PAYLAK · Design development 2026. Brand and services remain under
+          review. No financial transactions are executed through this
+          website.</small
+        >
+      </footer>
+    </div>
+    <script>
+      const items = [...document.querySelectorAll("[data-ar]")];
+      items.forEach((x) => (x.dataset.en = x.innerHTML));
+      document.getElementById("language").onclick = () => {
+        const ar = document.documentElement.lang !== "ar";
+        document.documentElement.lang = ar ? "ar" : "en";
+        document.documentElement.dir = ar ? "rtl" : "ltr";
+        items.forEach((x) => (x.innerHTML = ar ? x.dataset.ar : x.dataset.en));
+        document.getElementById("language").textContent = ar ? "EN" : "عربي";
+      };
+    </script>
+  </body>
+</html>

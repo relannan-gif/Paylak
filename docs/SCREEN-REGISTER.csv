@@ -1,0 +1,41 @@
+ID,Screen / area,Status,Covered,Remaining
+home,Home,Interactive,Wallet/card separation; hide balance; quick actions,"Empty balances, refresh error, live incoming states"
+payments,Payments hub,Interactive,"People, service routes, requests",Verified recipient eligibility
+send,Send money,Interactive,"Contact, amount, note, insufficient balance","Real name verification, limits, authentication"
+review,Review quote,Interactive,"Amount, fee, total, expiry","Server quote binding, final authorization"
+receipt,Receipt,Interactive,"Reference, amount, status, support","Server evidence, sharing/export"
+cash,Cash finder,Interactive,"Sample locations, search, reservation entry","Live map, hours freshness, agent capacity"
+reserve,Cash reservation,Interactive,Amount/location; simulated acceptance; hold,"Pickup window, auto-expiry, denominations"
+cards,Cards,Interactive,Separate balance; freeze; online control,"Issuer status, physical ordering, PAN display"
+load,Card funding,Interactive,Wallet-to-card move and receipt,Issuer reconciliation and reversal
+limits,Card limits,Interactive,Personal cap validation,Server/issuer enforcement
+activity,Activity,Interactive,"Search, filters, receipt drilldown","Statements, date filters, export"
+services,Services hub,Interactive,"Top-up, eSIM, bill, business entries",Live catalogue eligibility
+topup,Mobile top-up,Interactive,Phone validation and debit simulation,"Denominations, operator provisioning"
+esim,eSIM catalogue,Interactive,"Sample plans, compatibility copy, review","Country search, installation, usage, refunds"
+request,Request money,Interactive,Amount and local request reference,"Signed links, paid/cancel/expiry states"
+pockets,Travel pocket,Interactive,Move money into pocket,"Rename, goal, move-out, multiple pockets"
+support,Support case,Interactive,"Local case, payment context, validation","Ticket backend, staff, delivery, follow-up"
+profile,Profile,Interactive,Language/theme/reset/scenario controls,"Profile editing, persistence, sessions"
+notifications,Updates,Interactive,Sample updates and card entry,"Push permissions, server inbox"
+onboarding,Onboarding preview,Preview,Four informational steps,"Phone, OTP, consent, KYC, selfie and review"
+add,Funding methods,Preview,Cash/card/bank journey explanation,Providers and actual quotes
+bills,Bills and subscriptions,Preview,Product categories and distinctions,Biller retrieval and transaction states
+business,Business,Preview,Collections/payroll/settlement proposition,"Business KYC, roles, invoices, payroll execution"
+international,International transfers,Disabled,Net-amount principles and availability,Approved corridors and origin partners
+usdt,USDT,Disabled,Receive/convert/use design and gate,"Permission, custody, network and issuer setup"
+security,Security,Preview,App lock/recovery/device information,"Biometrics, PIN, session revocation"
+pending,Pending outcome,Interactive,Same reference; no demo debit yet,Server authoritative status reconciliation
+failed,Declined outcome,Interactive,Nothing debited; return to review,Provider reason mapping
+website,Marketing website,Interactive,Responsive bilingual page and demo CTAs,"Final copy, legal entity, localized product art"
+identity-review,Identity review,Specified,"Needs-information, rejected, support",Screens and provider
+physical-card,Physical card order,Specified,"Address, fees, delivery, activation",Screens and issuer
+card-dispute,Card dispute/refund,Specified,Auth reversal vs refund; case,Screens and issuer
+cash-collection,Cash collection,Specified,"Identity, hold consumption, receipt",Customer/agent UI and backend
+cash-expiry,Cash expiry/failure,Specified,Release or relocate; support remedy,Worker and race-safe UI
+split,Split expenses,Specified,"Shares, paid/partial/cancelled",Screens and request service
+family,Family/guardian,Specified,"Consent, roles, allowances, revocation",Full design and authorized structure
+rewards,Rewards,Specified,Merchant-funded eligibility and reversal,Full design and catalogue
+merchant-invoice,Merchant invoices,Specified,"Create, share, paid/refunded",Full merchant UI
+payroll,Payroll batch,Specified,"Maker/checker, errors, partial outcomes",Full employer UI
+reconciliation,Operations reconciliation,Specified,Owned exceptions and partner evidence,Internal operations console

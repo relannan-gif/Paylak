@@ -1,0 +1,94 @@
+{
+  "date": "2026-09-30T15:24:35.145Z",
+  "results": [
+    {
+      "name": "Home renders separate wallet and card balances",
+      "status": "PASS"
+    },
+    {
+      "name": "All five primary tabs navigate",
+      "status": "PASS"
+    },
+    {
+      "name": "Send validates empty and excessive amounts",
+      "status": "PASS"
+    },
+    {
+      "name": "Send reviews, commits and updates wallet",
+      "status": "PASS"
+    },
+    {
+      "name": "Payment contact shortcut preserves selected recipient",
+      "status": "PASS"
+    },
+    {
+      "name": "Cash acceptance holds funds and cancel releases once",
+      "status": "PASS"
+    },
+    {
+      "name": "Card freeze and load affect distinct funds",
+      "status": "PASS"
+    },
+    {
+      "name": "Card personal limit rejects below-spent cap",
+      "status": "PASS"
+    },
+    {
+      "name": "Activity has useful no-results state",
+      "status": "PASS"
+    },
+    {
+      "name": "Top-up validates destination and completes sample order",
+      "status": "PASS"
+    },
+    {
+      "name": "eSIM sample purchase is explicitly non-provisioning",
+      "status": "PASS"
+    },
+    {
+      "name": "USDT is disabled and exposes no deposit address",
+      "status": "PASS"
+    },
+    {
+      "name": "Support case is local and honestly labelled",
+      "status": "PASS"
+    },
+    {
+      "name": "Offline scenario prevents a quote",
+      "status": "PASS"
+    },
+    {
+      "name": "Declined scenario never debits the wallet",
+      "status": "PASS"
+    },
+    {
+      "name": "Pending scenario retains the operation reference",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic amount entry and mirrored navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "Light appearance remains legible",
+      "status": "PASS"
+    },
+    {
+      "name": "Narrow phone has no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "All secondary route entry points render without crashing",
+      "status": "PASS"
+    },
+    {
+      "name": "Website desktop and mobile, Arabic toggle and FAQ",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser runtime errors",
+      "status": "PASS"
+    }
+  ],
+  "runtimeErrors": []
+}

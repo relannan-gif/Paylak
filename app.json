@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "PAYLAK",
+    "slug": "paylak",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#315DDB",
+        "foregroundImage": "./assets/android-icon-foreground.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "single"
+    },
+    "plugins": ["expo-router", "expo-font", "expo-splash-screen"],
+    "scheme": "paylak",
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}
